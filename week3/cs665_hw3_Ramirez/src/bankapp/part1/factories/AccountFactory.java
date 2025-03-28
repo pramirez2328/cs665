@@ -3,7 +3,7 @@ package bankapp.part1.factories;
 import bankapp.part1.accounts.*;
 
 
-class AccountFactory {
+public class AccountFactory {
     public CheckingAccount createCheckingAccount() {
         System.out.println("Creating Checking Account");
         return new CheckingAccount();
