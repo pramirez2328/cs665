@@ -1,4 +1,4 @@
-package bankapp.part1.accounts;
+package bankapp.part2.accounts;
 
 public class CheckingAccount {
     public void accountType() {

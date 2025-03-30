@@ -1,6 +1,6 @@
-package bankapp.part1.factories;
+package bankapp.part2.factories;
 
-import bankapp.part1.accounts.*;
+import bankapp.part2.accounts.*;
 
 
 public class AccountFactory {
