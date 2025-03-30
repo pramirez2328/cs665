@@ -1,4 +1,4 @@
-package bankapp.part3.factories;
+package bankapp.part3.bankfactories;
 
 import bankapp.part3.accounts.*;
 

@@ -10,14 +10,6 @@ dependencies {
     implementation libs.guava
 }
 
-testing {
-    suites {
-        test {
-            useJUnit('4.13.2')
-        }
-    }
-}
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -26,7 +18,7 @@ java {
 
 // Default application main class (optional)
 application {
-    mainClass = 'bankapp.part1.main.AbstractFactoryBank'
+    mainClass = 'bankapp.part3.main.BankAppMain'
 }
 
 // Custom run tasks
@@ -45,5 +37,5 @@ tasks.register('runPart2', JavaExec) {
 tasks.register('runPart3', JavaExec) {
     group = 'application'
     classpath = sourceSets.main.runtimeClasspath
-    mainClass = 'bankapp.part3.main.AbstractFactoryBank'
+    mainClass = 'bankapp.part3.main.BankAppMain'
 }

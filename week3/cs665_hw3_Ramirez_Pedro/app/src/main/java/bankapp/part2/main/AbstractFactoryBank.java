@@ -16,16 +16,12 @@ public class AbstractFactoryBank {
         SavingsAccount basicSavings = baseFactory.createSavingsAccount();
         basicSavings.accountType();
 
-        System.out.println("\n----------------------------------------------");
-
-        System.out.println("\n--Testing Bank of America version of Accounts--\n");
+        System.out.println("\n\n--Testing Bank of America version of Accounts--\n");
         AccountFactory boaFactory = new BOAFactory();
         CheckingAccount boaChecking = boaFactory.createCheckingAccount();
         boaChecking.accountType();
         SavingsAccount boaSavings = boaFactory.createSavingsAccount();
         boaSavings.accountType();
-
-        System.out.println("\n----------------------------------------------");
 
         System.out.println("\n--Testing Chase version of Accounts--\n");
         AccountFactory chaseFactory = new ChaseFactory();
