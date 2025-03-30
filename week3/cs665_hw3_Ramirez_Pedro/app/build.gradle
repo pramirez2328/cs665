@@ -1,0 +1,49 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation libs.guava
+}
+
+testing {
+    suites {
+        test {
+            useJUnit('4.13.2')
+        }
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+// Default application main class (optional)
+application {
+    mainClass = 'bankapp.part1.main.AbstractFactoryBank'
+}
+
+// Custom run tasks
+tasks.register('runPart1', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'bankapp.part1.main.AbstractFactoryBank'
+}
+
+tasks.register('runPart2', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'bankapp.part2.main.Main'
+}
+
+tasks.register('runPart3', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'bankapp.part3.main.Main'
+}
