@@ -1,17 +1,18 @@
-package bankapp.part2.factories;
+package bankapp.part3.factories;
 
-import bankapp.part2.accounts.*;
+import bankapp.part3.accounts.*;
 
-public class BOAFactory extends AccountFactory {
+// Chase Factory
+public class ChaseFactory extends AccountFactory {
     @Override
     public CheckingAccount createCheckingAccount() {
         System.out.println("Creating Checking Account");
-        return new BOACheckingAccount();
+        return new ChaseCheckingAccount();
     }
 
     @Override
     public SavingsAccount createSavingsAccount() {
         System.out.println("Creating Savings Account");
-        return new BOASavingsAccount();
+        return new ChaseSavingsAccount();
     }
 }

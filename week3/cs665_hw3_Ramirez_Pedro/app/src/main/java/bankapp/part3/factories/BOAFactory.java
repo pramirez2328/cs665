@@ -1,6 +1,6 @@
-package bankapp.part2.factories;
+package bankapp.part3.factories;
 
-import bankapp.part2.accounts.*;
+import bankapp.part3.accounts.*;
 
 public class BOAFactory extends AccountFactory {
     @Override

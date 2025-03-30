@@ -1,13 +1,13 @@
-package bankapp.part1.main;
+package bankapp.part3.main;
 
-import bankapp.part1.accounts.*;
-import bankapp.part1.factories.*;
-
+import bankapp.part3.accounts.*;
+import bankapp.part3.factories.*;
+import bankapp.part3.ui.*;
 
 
 public class AbstractFactoryBank {
     public static void main(String[] args) {
-        System.out.println("PART1");
+        System.out.println("PART 1");
 
         System.out.println("\n--Testing Basic version of Accounts--\n");
         AccountFactory baseFactory = new AccountFactory();
@@ -33,5 +33,21 @@ public class AbstractFactoryBank {
         chaseChecking.accountType();
         SavingsAccount chaseSavings = chaseFactory.createSavingsAccount();
         chaseSavings.accountType();
+
+        System.out.println("\n----------------------------------------------\n");
+
+        System.out.println("PART 2");
+
+        System.out.println("\n--Testing Bank of America version of UI--\n");
+        BankUI boaUI = new BOAUI();
+        boaUI.createUI();
+
+        System.out.println("\n--Testing Chase version of UI--\n");
+        BankUI chaseUI = new ChaseUI();
+        chaseUI.createUI();
+
+        System.out.println("\n----------------------------------------------\n");
+
+        System.out.println("PART 3");
     }
 }

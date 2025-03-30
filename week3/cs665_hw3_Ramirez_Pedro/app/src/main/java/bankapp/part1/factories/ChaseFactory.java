@@ -1,10 +1,5 @@
 package bankapp.part1.factories;
 
-import bankapp.part1.accounts.ChaseCheckingAccount;
-import bankapp.part1.accounts.ChaseSavingsAccount;
-import bankapp.part1.accounts.CheckingAccount;
-import bankapp.part1.accounts.SavingsAccount;
-
 import bankapp.part1.accounts.*;
 
 // Chase Factory
