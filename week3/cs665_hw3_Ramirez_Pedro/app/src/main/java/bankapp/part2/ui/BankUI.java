@@ -1,7 +1,7 @@
 package bankapp.part2.ui;
 
 public abstract class BankUI {
-    public final void createUI() {
+    public final void getUI() {
         System.out.println("User interface completed as below :");
         createHeader();
         createSidebar();
@@ -10,8 +10,11 @@ public abstract class BankUI {
     }
 
     protected abstract void createHeader();
+
     protected abstract void createSidebar();
+
     protected abstract void createMainPanel();
+
     protected abstract void createFooter();
 }
 

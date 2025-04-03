@@ -36,10 +36,10 @@ public class AbstractFactoryBank {
 
         System.out.println("\n--Testing Bank of America version of UI--\n");
         BankUI boaUI = new BOAUI();
-        boaUI.createUI();
+        boaUI.getUI();
 
         System.out.println("\n--Testing Chase version of UI--\n");
         BankUI chaseUI = new ChaseUI();
-        chaseUI.createUI();
+        chaseUI.getUI();
     }
 }
