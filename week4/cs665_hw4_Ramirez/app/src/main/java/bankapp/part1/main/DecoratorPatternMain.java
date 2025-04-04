@@ -1,9 +1,9 @@
-package bankapp.part1;
+package bankapp.part1.main;
 
 import bankapp.part1.transactions.*;
 import bankapp.part1.decorators.*;
 
-public class Part1Main {
+public class DecoratorPatternMain {
     public static void main(String[] args) {
 
         System.out.println("-- Testing Deposit Transaction by itself --");

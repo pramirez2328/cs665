@@ -21,16 +21,6 @@ dependencies {
     implementation libs.guava
 }
 
-testing {
-    suites {
-        // Configure the built-in test suite
-        test {
-            // Use JUnit4 test framework
-            useJUnit('4.13.2')
-        }
-    }
-}
-
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
@@ -41,4 +31,23 @@ java {
 application {
     // Define the bankapp.main class for the application.
     mainClass = 'bankapp.main.Main'
+}
+
+// Custom run tasks
+tasks.register('runPart1', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'bankapp.part1.main.DecoratorPatternMain'
+}
+
+tasks.register('runPart2', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'bankapp.part2.main.CompositePatternMain'
+}
+
+tasks.register('runPart3', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'bankapp.part3.main.BankAppMain'
 }
