@@ -1,4 +1,4 @@
-package main;
+package bankapp.main;
 
 public class Main {
     public String getGreeting() {

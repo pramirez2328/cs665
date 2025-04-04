@@ -39,6 +39,6 @@ java {
 }
 
 application {
-    // Define the main class for the application.
-    mainClass = 'main.Main'
+    // Define the bankapp.main class for the application.
+    mainClass = 'bankapp.main.Main'
 }
