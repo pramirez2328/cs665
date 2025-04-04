@@ -49,5 +49,5 @@ tasks.register('runPart2', JavaExec) {
 tasks.register('runPart3', JavaExec) {
     group = 'application'
     classpath = sourceSets.main.runtimeClasspath
-    mainClass = 'bankapp.part3.main.BankAppMain'
+    mainClass = 'bankapp.part3.main.AdapterMain'
 }
