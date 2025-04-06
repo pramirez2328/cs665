@@ -1,0 +1,7 @@
+// add pdf and docx files to gitignore
+
+# Ignore PDF and DOCX files
+*.pdf
+*.docx
+
+# End of .gitignore
