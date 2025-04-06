@@ -30,7 +30,7 @@ java {
 
 application {
     // Define the bankapp.main class for the application.
-    mainClass = 'bankapp.main.Main'
+    mainClass = 'bankapp.MasterMain'
 }
 
 // Custom run tasks

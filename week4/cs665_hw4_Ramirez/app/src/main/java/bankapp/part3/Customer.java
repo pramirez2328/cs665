@@ -2,8 +2,8 @@ package bankapp.part3;
 
 public class Customer {
     private final String name;
-    private final String phone;
-    private final String address;
+    private String phone;
+    private String address;
 
     public Customer(String name, String phone, String address) {
         this.name = name;
