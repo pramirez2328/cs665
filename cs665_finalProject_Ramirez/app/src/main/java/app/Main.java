@@ -12,73 +12,116 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        // 1. Create a Chairperson (Singleton)
+        // 1. Singleton: Create a Chairperson
         Chairperson chair = Chairperson.getInstance("C1", "Dr. Smith");
 
-        // 2. Create faculty
+        // 2. Faculty
         Faculty drJones = new FullTimeFaculty("F1", "Dr. Jones");
+        Faculty drWhite = new PartTimeFaculty("F2", "Dr. White");
 
-        // 3. Create courses
+        // 3. Courses
         Course java = new Course("CS501", "Java", "Intro to Java", drJones, 1);
         Course python = new Course("CS502", "Python", "Intro to Python", drJones, 2);
+        Course ai = new Course("CS601", "AI", "Intro to AI", drWhite, 1);
+        Course ml = new Course("CS602", "Machine Learning", "Supervised and Unsupervised", drWhite, 1);
 
-        // Register observer (Observer Pattern)
+        // Register Observer (Chair)
         java.registerObserver(chair);
+        ai.registerObserver(chair);
 
-        // 4. Decorate course (Decorator Pattern)
-        CourseFormat decoratedJava = new CapstoneCourseDecorator(new LabRequiredDecorator(new BaseCourseFormat(java)));
-        System.out.println("\n--- Decorated Course Output ---");
-        System.out.println(decoratedJava.format());
+        // 4. Decorator: Add features to multiple courses
+        CourseFormat javaDecorated = new CapstoneCourseDecorator(new LabRequiredDecorator(new BaseCourseFormat(java)));
+        CourseFormat aiDecorated = new CapstoneCourseDecorator(new BaseCourseFormat(ai));
 
-        // 5. Create concentrations (Composite Pattern)
-        Concentration progLang = new Concentration("Programming Languages");
-        Concentration oop = new Concentration("Object-Oriented Languages");
+        System.out.println("\n--- Decorated Java Course ---");
+        System.out.println(javaDecorated.format());
 
-        oop.addComponent(new SingleCourse(java));
-        progLang.addComponent(oop);
-        progLang.addComponent(new SingleCourse(python));
+        System.out.println("\n--- Decorated AI Course ---");
+        System.out.println(aiDecorated.format());
 
-        System.out.println("\n--- Composite Concentration Output ---");
-        System.out.println(progLang.format());
+        // 5. Composite: Build concentration trees
+        Concentration mlTrack = new Concentration("Machine Learning Track");
+        mlTrack.addComponent(new SingleCourse(ml));
+        mlTrack.addComponent(new SingleCourse(ai));
 
-        // 6. Create program using Factory Pattern
-        ProgramFactory factory = new BachelorProgramFactory();
-        Program bsCS = factory.createProgram("B.S. Computer Science", List.of(java), List.of(python));
+        Concentration dataSci = new Concentration("Data Science");
+        dataSci.addComponent(mlTrack);
+        dataSci.addComponent(new SingleCourse(python));
 
-        // 7. Create students
+        System.out.println("\n--- Composite Concentration (Data Science) ---");
+        System.out.println(dataSci.format());
+
+        // 6. Factory: Create both Bachelor and Master programs
+        ProgramFactory bachelorFactory = new BachelorProgramFactory();
+        ProgramFactory masterFactory = new MasterProgramFactory();
+
+        Program bsCS = bachelorFactory.createProgram("B.S. Computer Science", List.of(java, python), List.of(ai));
+        Program msDS = masterFactory.createProgram("M.S. Data Science", List.of(ai, ml), List.of(python));
+
+        // 7. Students
         Student alice = new Student("S1", "Alice", bsCS);
         Student bob = new Student("S2", "Bob", bsCS);
         Student charlie = new Student("S3", "Charlie", bsCS);
+        Student dana = new Student("S4", "Dana", msDS);
+        Student eric = new Student("S5", "Eric", msDS);
 
-        // 8. Enroll Alice in Java (OK)
-        java.enroll(alice);
+        // 8. Enrollments (Observer triggers + waitlist)
+        java.enroll(alice);      // enrolled
+        java.enroll(bob);        // waitlisted & chair notified
+        java.drop(alice);        // bob auto-enrolled
 
-        // 9. Enroll Bob in Java (Triggers observer: course full)
-        java.enroll(bob);
+        ai.enroll(dana);         // enrolled
+        ai.enroll(eric);         // waitlisted & chair notified
 
-        // 10. Drop Alice (Charlie should be auto-enrolled from waitlist)
-        java.drop(alice);
+        // 9. GPA Strategies
+        Map<Course, String> gradesAlice = new HashMap<>();
+        gradesAlice.put(java, "A");
+        gradesAlice.put(python, "B");
 
-        // 11. GPA Calculation (Strategy Pattern)
-        Map<Course, String> grades = new HashMap<>();
-        grades.put(java, "A");
-        grades.put(python, "B");
-
-        // Standard GPA
         alice.setGpaStrategy(new StandardGpa());
-        System.out.println("\nAlice Standard GPA: " + alice.calculateGpa(grades));
+        System.out.printf("\nAlice's Standard GPA: %.2f\n", alice.calculateGpa(gradesAlice));
 
-        // Pass/Fail GPA
         alice.setGpaStrategy(new PassFailGpa());
-        System.out.println("Alice Pass/Fail GPA: " + alice.calculateGpa(grades));
+        System.out.printf("Alice's Pass/Fail GPA: %.2f\n", alice.calculateGpa(gradesAlice));
 
-        // 12. Assign thesis
+        // Dana's grades
+        Map<Course, String> gradesDana = new HashMap<>();
+        gradesDana.put(ai, "A");
+        gradesDana.put(ml, "A");
+
+        dana.setGpaStrategy(new StandardGpa());
+        System.out.printf("\nDana's Standard GPA: %.2f\n", dana.calculateGpa(gradesDana));
+
+        // 10. Assign Thesis
         alice.setThesis(new Thesis("AI in Education", drJones));
-        System.out.println("\nAlice Thesis: " + alice.getThesis());
+        dana.setThesis(new Thesis("Big Data in Finance", drWhite));
 
-        // 13. Print student info
-        System.out.println("\n--- Student Summary ---");
-        System.out.println(alice);
-        System.out.println("Program: " + alice.getProgram().format());
+        // 11. Output student + program summaries
+        List<Student> students = List.of(alice, bob, charlie, dana, eric);
+
+        System.out.println("\n--- Student Summaries ---");
+        for (Student s : students) {
+            System.out.println(s);
+            System.out.println("Program: " + s.getProgram().format());
+            if (s.getThesis() != null) {
+                System.out.println("Thesis: " + s.getThesis());
+            }
+            System.out.println();
+        }
+
+        // 12. Display course enrollments
+        System.out.println("--- Course Enrollments ---");
+        List<Course> allCourses = List.of(java, python, ai, ml);
+        for (Course c : allCourses) {
+            System.out.println("Course: " + c.getTitle());
+            System.out.println("Enrolled Students: " + c.getEnrolledStudents().size());
+            System.out.println("Waitlist Size: " + c.getWaitlist().size());
+            System.out.println();
+        }
+
+        // 13. Print decorated course HTML again
+        System.out.println("--- Course HTML Output (Decorated) ---");
+        System.out.println(javaDecorated.format());
+        System.out.println(aiDecorated.format());
     }
 }
