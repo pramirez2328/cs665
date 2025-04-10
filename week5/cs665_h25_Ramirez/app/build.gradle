@@ -3,7 +3,6 @@
  *
  * This generated file contains a sample Java application project to get you started.
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.13/userguide/building_java_projects.html in the Gradle documentation.
- * This project uses @Incubating APIs which are subject to change.
  */
 
 plugins {
@@ -17,6 +16,9 @@ repositories {
 }
 
 dependencies {
+    // Use JUnit test framework.
+    testImplementation libs.junit
+
     // This dependency is used by the application.
     implementation libs.guava
 }
@@ -29,20 +31,6 @@ java {
 }
 
 application {
-    // Define the bankapp.main class for the application.
-    mainClass = 'bankapp.MasterMain'
+    // Define the main class for the application.
+    mainClass = 'bankapp.appMain'
 }
-
-// Custom run tasks
-tasks.register('runPart1', JavaExec) {
-    group = 'application'
-    classpath = sourceSets.main.runtimeClasspath
-    mainClass = 'bankapp.part1.main.DecoratorPatternMain'
-}
-
-tasks.register('runPart2', JavaExec) {
-    group = 'application'
-    classpath = sourceSets.main.runtimeClasspath
-    mainClass = 'bankapp.part2.main.CompositePatternMain'
-}
-
