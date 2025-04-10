@@ -1,6 +1,7 @@
 package model.users;
 
 import model.course.Course;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +32,9 @@ public abstract class Faculty {
         return coursesTaught;
     }
 
+    public void receiveQuery(String studentName, String question) {
+        System.out.printf("📬 Faculty %s received query from %s: \"%s\"\n", name, studentName, question);
+    }
+    
     public abstract int getMaxCoursesPerSemester();
 }
