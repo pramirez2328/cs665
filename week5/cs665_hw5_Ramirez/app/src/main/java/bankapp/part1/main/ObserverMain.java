@@ -21,10 +21,10 @@ public class ObserverMain {
         subject2.registerObserver(alice);
         subject2.registerObserver(bob);
 
-        System.out.println("Product Info Message by subject1");
+        System.out.println("\nProduct Info Message by subject1\n");
         subject1.notifyObservers("Interest rate being increased...");
 
-        System.out.println("Promotional Info Message by subject2");
+        System.out.println("\nPromotional Info Message by subject2\n");
         subject2.notifyObservers("New products for Auto Loans...");
     }
 }

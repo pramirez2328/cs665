@@ -12,7 +12,7 @@ public class StrategyMain {
         calculator.setStrategy(new SimpleInterestStrategy());
         System.out.println(calculator.computeInterest(balance, rate));
 
-        System.out.println("Using Compound interest");
+        System.out.println("\nUsing Compound interest");
         calculator.setStrategy(new CompoundInterestStrategy());
         System.out.println(calculator.computeInterest(balance, rate));
     }
