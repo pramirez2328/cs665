@@ -31,6 +31,27 @@ java {
 }
 
 application {
-    // Define the main class for the application.
     mainClass = 'app.Main'
 }
+
+tasks.register('runCreational', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('app.Main')
+    args = ['creational']
+}
+
+tasks.register('runStructural', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('app.Main')
+    args = ['structural']
+}
+
+tasks.register('runBehavioral', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('app.Main')
+    args = ['behavioral']
+}
+
