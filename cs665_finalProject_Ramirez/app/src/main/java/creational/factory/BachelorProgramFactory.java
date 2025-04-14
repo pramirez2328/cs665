@@ -5,7 +5,7 @@
  * It encapsulates the instantiation logic, demonstrating the Factory Method pattern.
  */
 
-package creational;
+package creational.factory;
 
 import model.course.Course;
 import model.program.BachelorProgram;

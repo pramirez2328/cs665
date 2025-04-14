@@ -6,7 +6,7 @@
  * without coupling them to specific implementation classes.
  */
 
-package creational;
+package creational.factory;
 
 import model.course.Course;
 import model.program.Program;

@@ -2,8 +2,8 @@ package model.course;
 
 import model.users.Faculty;
 import model.users.Student;
-import behavioral.Observer;
-import behavioral.Subject;
+import behavioral.observer.Observer;
+import behavioral.observer.Subject;
 
 
 import java.util.*;

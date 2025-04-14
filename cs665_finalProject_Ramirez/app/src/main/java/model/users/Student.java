@@ -1,7 +1,7 @@
 package model.users;
 
-import behavioral.StandardGpa;
-import behavioral.GpaStrategy;
+import behavioral.strategy.StandardGpa;
+import behavioral.strategy.GpaStrategy;
 import model.common.Semester;
 import model.common.Thesis;
 import model.course.Course;

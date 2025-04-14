@@ -1,4 +1,4 @@
-package creational;
+package creational.builder;
 
 import model.common.Thesis;
 import model.users.Faculty;
@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * CREATIONAL DESIGN PATTERN — Builder
- * <p>
  * This class implements the Builder Pattern for constructing Thesis objects step-by-step.
  * It allows optional fields to be set without complex constructors or telescoping parameters.
  */

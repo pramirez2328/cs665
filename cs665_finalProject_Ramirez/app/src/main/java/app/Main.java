@@ -1,12 +1,23 @@
 package app;
 
-import behavioral.*;
-import creational.*;
+import behavioral.strategy.PassFailGpa;
+import behavioral.strategy.StandardGpa;
+import creational.builder.ThesisBuilder;
+import creational.factory.BachelorProgramFactory;
+import creational.factory.CertificateProgramFactory;
+import creational.factory.MasterProgramFactory;
+import creational.factory.ProgramFactory;
+import creational.singleton.Chairperson;
 import model.common.*;
 import model.course.*;
 import model.program.Program;
 import model.users.*;
-import structural.*;
+import structural.composite.Concentration;
+import structural.composite.SingleCourse;
+import structural.decorator.BaseCourseFormat;
+import structural.decorator.CapstoneCourseDecorator;
+import structural.decorator.CourseFormat;
+import structural.decorator.LabRequiredDecorator;
 
 import java.util.*;
 
@@ -82,7 +93,9 @@ public class Main {
         System.out.println(certAnalytics.format());
 
         System.out.println("\n------------------------------------------");
+
         System.out.println("\n--- Thesis Builder Pattern ---");
+
         // Builder: create a new thesis
         Thesis aiThesis = new ThesisBuilder()
                 .setTitle("AI in Healthcare")
@@ -100,85 +113,141 @@ public class Main {
     public static void runStructuralPattern() {
         System.out.println("\n=== STRUCTURAL PATTERNS: COMPOSITE & DECORATOR ===");
 
-        // Decorator
+        // --- DECORATOR PATTERN ---
+        System.out.println("\n--- Decorator Pattern: Enhanced Course Formatting ---");
+
         Course java = new Course("CS501", "Java", "Intro to Java", null, 20);
         Course ai = new Course("CS601", "AI", "Intro to AI", null, 20);
 
-        CourseFormat decoratedJava = new CapstoneCourseDecorator(new LabRequiredDecorator(new BaseCourseFormat(java)));
-        CourseFormat decoratedAI = new CapstoneCourseDecorator(new BaseCourseFormat(ai));
+        CourseFormat baseJava = new BaseCourseFormat(java);
+        System.out.println("\nBase Java Course Format:");
+        System.out.println(baseJava.format());
 
-        System.out.println("\n--- Decorated Course Output ---");
-        System.out.println(decoratedJava.format());
+        CourseFormat labJava = new LabRequiredDecorator(baseJava);
+        System.out.println("\nJava with Lab Decorator:");
+        System.out.println(labJava.format());
+
+        CourseFormat capstoneJava = new CapstoneCourseDecorator(labJava);
+        System.out.println("\nJava with Lab + Capstone Decorators:");
+        System.out.println(capstoneJava.format());
+
+        CourseFormat decoratedAI = new CapstoneCourseDecorator(new BaseCourseFormat(ai));
+        System.out.println("\nAI Course with Capstone Decorator:");
         System.out.println(decoratedAI.format());
 
-        // Composite
+        // --- COMPOSITE PATTERN ---
+        System.out.println("\n--- Composite Pattern: Concentrations with Sub-Concentrations ---");
+
         Course ml = new Course("CS602", "ML", "Machine Learning", null, 20);
         Course python = new Course("CS502", "Python", "Intro to Python", null, 20);
 
+        SingleCourse mlCourse = new SingleCourse(ml);
+        SingleCourse aiCourse = new SingleCourse(ai);
+        SingleCourse pythonCourse = new SingleCourse(python);
+
         Concentration mlTrack = new Concentration("Machine Learning Track");
-        mlTrack.addComponent(new SingleCourse(ml));
-        mlTrack.addComponent(new SingleCourse(ai));
+        mlTrack.addComponent(mlCourse);
+        mlTrack.addComponent(aiCourse);
+        System.out.println("\nMachine Learning Sub-Concentration:");
+        System.out.println(mlTrack.format());
 
         Concentration dataSci = new Concentration("Data Science");
         dataSci.addComponent(mlTrack);
-        dataSci.addComponent(new SingleCourse(python));
+        dataSci.addComponent(pythonCourse);
 
-        System.out.println("\n--- Composite Concentration Output ---");
+        System.out.println("\nFull Data Science Concentration:");
         System.out.println(dataSci.format());
     }
 
-    public static void runBehavioralPattern() {
-        System.out.println("\n=== BEHAVIORAL PATTERNS: OBSERVER, STRATEGY, INTERACTION ===");
 
+    public static void runBehavioralPattern() {
+        System.out.println("\n=== BEHAVIORAL PATTERNS: OBSERVER & STRATEGY ===");
+
+        System.out.println("\n--- Department Setup ---");
         Semester spring2025 = new Semester("Spring 2025");
         Department dept = Department.getInstance();
+        System.out.println("✅ Department initialized");
+        System.out.println("✅ Semester created: " + spring2025.getName());
 
-        // Faculty + Observer setup
+        // -- Observer Pattern Setup --
+        System.out.println("\n--- Observer Pattern: Enrollment Notifications ---");
+
         Chairperson chair = Chairperson.getInstance("C1", "Dr. Smith");
+        System.out.println("✅ Chairperson instance: " + chair.getName());
+
         FullTimeFaculty drJones = new FullTimeFaculty("F1", "Dr. Jones");
         Faculty drWhite = new PartTimeFaculty("F2", "Dr. White");
+        System.out.println("✅ Faculty created: " + drJones.getName() + " (Full-Time)");
+        System.out.println("✅ Faculty created: " + drWhite.getName() + " (Part-Time)");
 
         Course java = new Course("CS501", "Java", "Intro to Java", drJones, 1);
         Course ai = new Course("CS601", "AI", "Intro to AI", drWhite, 1);
-        Course ml = new Course("CS602", "ML", "Machine Learning", drWhite, 1);
+        System.out.println("✅ Course created: Java (Instructor: " + drJones.getName() + ")");
+        System.out.println("✅ Course created: AI (Instructor: " + drWhite.getName() + ")");
 
+        // Register Chairperson as observer
         java.registerObserver(chair);
         ai.registerObserver(chair);
+        System.out.println("🔔 Chairperson registered as observer for Java & AI");
 
-        // Students
+        // Create program and students
         ProgramFactory bachelorFactory = new BachelorProgramFactory();
-        Program bsCS = bachelorFactory.createProgram("B.S. CS", List.of(java), List.of(ai, ml));
+        Program bsCS = bachelorFactory.createProgram("B.S. CS", List.of(java), List.of(ai));
+        System.out.println("✅ Bachelor Program created: B.S. CS");
 
+        System.out.println("\n--- Student Enrollments ---");
         Student alice = new Student("S1", "Alice", bsCS);
         Student bob = new Student("S2", "Bob", bsCS);
         Student dana = new Student("S3", "Dana", bsCS);
+        System.out.println("✅ Students created: Alice, Bob, Dana");
 
-        // Enroll + Observer + Waitlist
-        java.enroll(alice);      // Enrolled
-        java.enroll(bob);        // Waitlisted
-        java.drop(alice);        // Bob auto-enrolled
+        System.out.println("📘 Alice enrolling in Java...");
+        java.enroll(alice); // OK
 
-        ai.enroll(dana);
-        ai.enroll(alice);        // Waitlisted
+        System.out.println("📘 Bob enrolling in Java (should trigger waitlist & notification)...");
+        java.enroll(bob);   // Triggers observer
 
-        // GPA (Strategy Pattern)
-        Map<Course, String> grades = Map.of(java, "A", ai, "B");
+        System.out.println("📘 Alice dropping Java (Bob should be auto-enrolled)...");
+        java.drop(alice);   // Bob auto-enrolled
 
+        System.out.println("📘 Dana enrolling in AI...");
+        ai.enroll(dana);    // OK
+
+        System.out.println("📘 Alice enrolling in AI (should trigger waitlist & notification)...");
+        ai.enroll(alice);   // Triggers observer
+
+        // Grades setup
+        Map<Course, String> grades = Map.of(
+                java, "A",
+                ai, "B"
+        );
+
+        System.out.println("\n------------------------------------------");
+
+        // -- Strategy Pattern Setup --
+        System.out.println("\n--- Strategy Pattern: GPA Calculation ---");
+
+        System.out.println("📊 Calculating GPA using StandardGpa strategy...");
         alice.setGpaStrategy(new StandardGpa());
-        System.out.printf("\nAlice Standard GPA: %.2f\n", alice.calculateGpa(grades));
+        System.out.printf("✔️ Alice Standard GPA: %.2f\n", alice.calculateGpa(grades));
 
+        System.out.println("📊 Switching to PassFailGpa strategy...");
         alice.setGpaStrategy(new PassFailGpa());
-        System.out.printf("Alice Pass/Fail GPA: %.2f\n", alice.calculateGpa(grades));
+        System.out.printf("✔️ Alice Pass/Fail GPA: %.2f\n", alice.calculateGpa(grades));
 
-        // Thesis + Advisor
-        alice.setThesis(new Thesis("AI in Education", drJones));
-        System.out.println("\nAlice Thesis: " + alice.getThesis());
-
-        // Student-Faculty Interaction
+        // -- Advisor Interaction --
         System.out.println("\n--- Student Queries ---");
+
+        alice.setThesis(new Thesis("AI in Education", drJones));
+        System.out.println("🧠 Alice Thesis assigned: " + alice.getThesis());
+
+        System.out.println("📩 Alice sends a query to Dr. Jones...");
         drJones.receiveQuery(alice.getName(), "Can I review my thesis draft?");
+
+        System.out.println("📩 Bob sends a query to Chairperson...");
         chair.receiveQuery(bob.getName(), "Can I change advisors?");
     }
+
 
     public static void runAll() {
         runCreationalPattern();

@@ -6,7 +6,7 @@
  * for programs that typically include a thesis requirement.
  */
 
-package creational;
+package creational.factory;
 
 import model.course.Course;
 import model.program.MasterProgram;

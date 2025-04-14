@@ -6,10 +6,10 @@
  * and coordinates top-level concentrations.
  */
 
-package creational;
+package creational.singleton;
 
-import behavioral.Observer;
-import model.course.Concentration;
+import behavioral.observer.Observer;
+import structural.composite.Concentration;
 import model.users.Faculty;
 
 import java.util.ArrayList;

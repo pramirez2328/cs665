@@ -5,7 +5,7 @@
  * It encapsulates the creation logic for lightweight, non-thesis programs.
  */
 
-package creational;
+package creational.factory;
 
 import model.course.Course;
 import model.program.CertificateProgram;
