@@ -1,23 +1,28 @@
 package app;
 
-import behavioral.strategy.PassFailGpa;
-import behavioral.strategy.StandardGpa;
-import creational.builder.ThesisBuilder;
-import creational.factory.BachelorProgramFactory;
-import creational.factory.CertificateProgramFactory;
-import creational.factory.MasterProgramFactory;
-import creational.factory.ProgramFactory;
-import creational.singleton.Chairperson;
-import model.common.*;
-import model.course.*;
-import model.program.Program;
-import model.users.*;
-import structural.composite.Concentration;
-import structural.composite.SingleCourse;
-import structural.decorator.BaseCourseFormat;
-import structural.decorator.CapstoneCourseDecorator;
-import structural.decorator.CourseFormat;
-import structural.decorator.LabRequiredDecorator;
+import app.behavioral.strategy.strategy.PassFailGpa;
+import app.behavioral.strategy.strategy.StandardGpa;
+import app.creational.builder.ThesisBuilder;
+import app.creational.factory.BachelorProgramFactory;
+import app.creational.factory.CertificateProgramFactory;
+import app.creational.factory.MasterProgramFactory;
+import app.creational.factory.ProgramFactory;
+import app.creational.singleton.Chairperson;
+import app.model.common.Department;
+import app.model.common.Semester;
+import app.model.common.Thesis;
+import app.model.course.Course;
+import app.model.program.Program;
+import app.model.users.Faculty;
+import app.model.users.FullTimeFaculty;
+import app.model.users.PartTimeFaculty;
+import app.model.users.Student;
+import app.structural.composite.Concentration;
+import app.structural.composite.SingleCourse;
+import app.structural.decorator.BaseCourseFormat;
+import app.structural.decorator.CapstoneCourseDecorator;
+import app.structural.decorator.CourseFormat;
+import app.structural.decorator.LabRequiredDecorator;
 
 import java.util.*;
 
@@ -82,7 +87,6 @@ public class Main {
             if (s.getThesis() != null) {
                 System.out.println("Thesis: " + s.getThesis());
             }
-            System.out.println();
         }
 
         // Add a Certificate Program for extensibility

@@ -1,3 +1,7 @@
+Here's your **updated full `README.md` file** with the Builder pattern added under *Creational Patterns*:
+
+---
+
 # MET CS665 Final Project - Academic Program Management System
 
 ## 👨‍🎓 Overview
@@ -11,7 +15,7 @@ This project simulates a university's Computer Science department system that ma
 - Student enrollment, GPA, and thesis
 - Waitlisting and notifications
 
-It demonstrates a real-world object-oriented system using **six design patterns** from all three pattern categories:
+It demonstrates a real-world object-oriented system using **six design patterns** from all three pattern categories:  
 creational, structural, and behavioral.
 
 ---
@@ -27,8 +31,7 @@ creational, structural, and behavioral.
 
 ## 🧱 Project Structure
 
-![projectstructure.png](./assets/projectstructure.png)
-
+![project.png](./assets/project.png)
 
 ---
 
@@ -37,26 +40,40 @@ creational, structural, and behavioral.
 ### ✅ **Creational Patterns**
 
 1. **Factory Method**
-    - `ProgramFactory` creates `BachelorProgram` and `MasterProgram` objects
+    - `ProgramFactory` produces `BachelorProgram`, `MasterProgram`, and `CertificateProgram` objects
     - Promotes flexibility when adding new program types
+
 2. **Singleton**
-    - `Chairperson` class ensures only one instance exists system-wide
+    - `Chairperson` class ensures only one instance exists throughout the system
+
+3. **Builder**
+    - `ThesisBuilder` constructs `Thesis` objects step by step
+    - Useful for assembling complex thesis metadata (title, advisor, summary, keywords) in a readable and flexible way
+
+---
 
 ### ✅ **Structural Patterns**
 
-3. **Composite**
+4. **Composite**
     - `CourseComponent`, `SingleCourse`, and `Concentration`
-    - Allows recursive concentration structures with nested courses
-4. **Decorator**
-    - `CourseFormat`, `BaseCourseFormat`, `CourseDecorator`, and decorators like `CapstoneCourseDecorator`
+    - Allows recursive concentration structures with nested courses and sub-concentrations
+
+5. **Decorator**
+    - `CourseFormat`, `BaseCourseFormat`, `CourseDecorator`, and decorators like `CapstoneCourseDecorator` and
+      `LabRequiredDecorator`
     - Adds metadata like "Capstone" or "Lab Required" without altering the core `Course` class
+
+---
 
 ### ✅ **Behavioral Patterns**
 
-5. **Observer**
+6. **Observer**
     - `Course` (Subject) notifies `Chairperson` (Observer) when enrollment exceeds limit
-6. **Strategy**
-    - `GpaStrategy`, `StandardGpa`, `PassFailGpa` provide multiple GPA calculation methods
+    - Also supports real-time waitlist logic
+
+7. **Strategy**
+    - `GpaStrategy`, `StandardGpa`, and `PassFailGpa` provide multiple GPA calculation algorithms
+    - Strategy objects can be swapped at runtime
 
 ---
 
@@ -68,6 +85,7 @@ creational, structural, and behavioral.
 - Student enrollments with auto-waitlist handling
 - GPA calculation via pluggable strategies
 - Real-time notifications to the chairperson on course limits
+- Building complex `Thesis` objects using a fluent builder
 
 ---
 
@@ -76,12 +94,25 @@ creational, structural, and behavioral.
 1. Download the project:
    ```bash
    cd cs665_finalProject_Ramirez
-   run: ./gradlew run
+   ```
 
-### Author
+2. Run the app with Gradle:
+   ```bash
+   ./gradlew run
+   ```
 
-**Pedro Ramirez**<br>
-CS665 – Software Design & Patterns<br>
-Boston University<br>
-spring 2025
+3. To run specific design pattern demos:
+   ```bash
+   ./gradlew :app:runCreational
+   ./gradlew :app:runStructural
+   ./gradlew :app:runBehavioral
+   ```
 
+---
+
+### 👨‍💻 Author
+
+**Pedro Ramirez**  
+CS665 – Software Design & Patterns  
+Boston University  
+Spring 2025
