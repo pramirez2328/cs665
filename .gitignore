@@ -3,5 +3,5 @@
 # Ignore PDF and DOCX files
 *.pdf
 *.docx
-
+practice/
 # End of .gitignore
