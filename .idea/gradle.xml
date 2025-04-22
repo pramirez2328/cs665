@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/cs665_finalProject_Ramirez" />
+        <option name="gradleJvm" value="23" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/cs665_finalProject_Ramirez" />
+            <option value="$PROJECT_DIR$/cs665_finalProject_Ramirez/app" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/week2/cs665_hw2_Ramirez" />
+        <option name="gradleJvm" value="23" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/week2/cs665_hw2_Ramirez" />
+            <option value="$PROJECT_DIR$/week2/cs665_hw2_Ramirez/app" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/week3/cs665_hw3_Ramirez_Pedro" />
+        <option name="gradleJvm" value="23" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/week3/cs665_hw3_Ramirez_Pedro" />
+            <option value="$PROJECT_DIR$/week3/cs665_hw3_Ramirez_Pedro/app" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/week4/cs665_hw4_Ramirez" />
+        <option name="gradleJvm" value="23" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/week4/cs665_hw4_Ramirez" />
+            <option value="$PROJECT_DIR$/week4/cs665_hw4_Ramirez/app" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/week5/cs665_hw5_Ramirez" />
+        <option name="gradleJvm" value="23" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/week5/cs665_hw5_Ramirez" />
+            <option value="$PROJECT_DIR$/week5/cs665_hw5_Ramirez/app" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
