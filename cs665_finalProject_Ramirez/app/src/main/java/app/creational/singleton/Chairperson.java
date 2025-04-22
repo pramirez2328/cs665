@@ -26,7 +26,7 @@ public class Chairperson extends Faculty implements Observer {
     }
 
     // Static method to return the single instance
-    public static Chairperson getInstance(String id, String name) {
+    public static synchronized Chairperson getInstance(String id, String name) {
         if (instance == null) {
             instance = new Chairperson(id, name);
         }
