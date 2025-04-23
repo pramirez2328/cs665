@@ -7,7 +7,7 @@ import app.model.course.Course;
  * It wraps a Course object and provides the default formatting behavior.
  */
 public class BaseCourseFormat implements CourseFormat {
-    private Course course;
+    private final Course course;
 
     public BaseCourseFormat(Course course) {
         this.course = course;

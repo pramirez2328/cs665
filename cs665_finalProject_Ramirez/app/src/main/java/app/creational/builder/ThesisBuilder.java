@@ -16,7 +16,7 @@ public class ThesisBuilder {
     private String title;
     private Faculty advisor;
     private String summary;
-    private List<String> keywords = new ArrayList<>();
+    private final List<String> keywords = new ArrayList<>();
 
     public ThesisBuilder setTitle(String title) {
         this.title = title;
